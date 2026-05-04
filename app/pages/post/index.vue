@@ -76,15 +76,23 @@ const goToPage = (nextPage: number) => {
     <section class="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col gap-8 px-6 pb-8 pt-28 box-border min-h-0">
       <header class="flex flex-col gap-6">
         <div class="flex flex-col gap-4">
-          <p class="text-sm uppercase tracking-[0.4em] text-gray-400">GGU Post Archive</p>
-          <h1 class="text-4xl font-semibold tracking-[0.1em] md:text-5xl">星河文库</h1>
+          <p class="text-sm uppercase tracking-[0.4em] text-gray-400">
+            GGU Post Archive
+          </p>
+          <h1 class="text-4xl font-semibold tracking-[0.1em] md:text-5xl">
+            星河文库
+          </h1>
           <p class="max-w-2xl text-base text-gray-400">
             汇集校园新闻、学术活动与研究速递。每一篇文章都由构建引擎自动整理，确保干净、快速、无噪声的阅读体验。
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400">
-          <div class="rounded-full border border-white/10 bg-white/5 px-4 py-2">共 {{ data?.total ?? 0 }} 篇</div>
-          <div class="rounded-full border border-white/10 bg-white/5 px-4 py-2">第 {{ page }} / {{ totalPages }} 页</div>
+          <div class="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+            共 {{ data?.total ?? 0 }} 篇
+          </div>
+          <div class="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+            第 {{ page }} / {{ totalPages }} 页
+          </div>
         </div>
       </header>
 
@@ -103,24 +111,40 @@ const goToPage = (nextPage: number) => {
                   <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1"># 文库</span>
                 </div>
                 <h3 class="text-2xl font-semibold leading-snug text-white">
-                  <NuxtLink :to="`/post/${item.filename}`" class="hover:text-white/80">
+                  <NuxtLink
+                    :to="`/post/${item.filename}`"
+                    class="hover:text-white/80"
+                  >
                     {{ item.title }}
                   </NuxtLink>
                 </h3>
-                <p class="text-sm leading-relaxed text-gray-400 line-clamp-3">{{ item.excerpt }}</p>
-                <div class="mt-2 text-xs text-gray-500">阅读时长 · 1 分钟</div>
+                <p class="text-sm leading-relaxed text-gray-400 line-clamp-3">
+                  {{ item.excerpt }}
+                </p>
+                <div class="mt-2 text-xs text-gray-500">
+                  阅读时长 · 1 分钟
+                </div>
               </div>
 
-              <NuxtLink :to="`/post/${item.filename}`" class="relative block overflow-hidden rounded-2xl border border-white/10 bg-black/40 md:h-32 md:w-56">
-                <div v-if="item.coverImage" class="h-48 w-full overflow-hidden md:h-full">
+              <NuxtLink
+                :to="`/post/${item.filename}`"
+                class="relative block overflow-hidden rounded-2xl border border-white/10 bg-black/40 md:h-32 md:w-56"
+              >
+                <div
+                  v-if="item.coverImage"
+                  class="h-48 w-full overflow-hidden md:h-full"
+                >
                   <img
                     :src="item.coverImage"
                     :alt="item.title"
                     class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     loading="lazy"
-                  />
+                  >
                 </div>
-                <div v-else class="flex h-48 items-center justify-center bg-gradient-to-br from-slate-800 via-slate-900 to-black md:h-full">
+                <div
+                  v-else
+                  class="flex h-48 items-center justify-center bg-gradient-to-br from-slate-800 via-slate-900 to-black md:h-full"
+                >
                   <span class="text-5xl font-semibold text-white/60">{{ getInitial(item.title) }}</span>
                 </div>
               </NuxtLink>
@@ -128,15 +152,24 @@ const goToPage = (nextPage: number) => {
           </article>
         </section>
 
-        <div v-if="pending" class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400">
+        <div
+          v-if="pending"
+          class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400"
+        >
           正在加载文章目录...
         </div>
 
-        <div v-else-if="error" class="mt-6 rounded-2xl border border-red-400/30 bg-red-500/10 px-6 py-10 text-center text-sm text-red-200">
+        <div
+          v-else-if="error"
+          class="mt-6 rounded-2xl border border-red-400/30 bg-red-500/10 px-6 py-10 text-center text-sm text-red-200"
+        >
           文章目录加载失败，请稍后再试。
         </div>
 
-        <div v-else-if="posts.length === 0" class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400">
+        <div
+          v-else-if="posts.length === 0"
+          class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400"
+        >
           暂无文章内容。
         </div>
       </div>
@@ -149,7 +182,9 @@ const goToPage = (nextPage: number) => {
         >
           上一页
         </button>
-        <div class="text-xs uppercase tracking-[0.3em]">Page {{ page }} of {{ totalPages }}</div>
+        <div class="text-xs uppercase tracking-[0.3em]">
+          Page {{ page }} of {{ totalPages }}
+        </div>
         <button
           class="rounded-full border border-white/15 px-5 py-2 transition hover:border-white/40 disabled:cursor-not-allowed disabled:opacity-40"
           :disabled="page >= totalPages"

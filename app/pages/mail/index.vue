@@ -160,44 +160,91 @@ onBeforeUnmount(() => {
   <div class="flex-1 flex flex-col min-h-0 bg-black/20 text-white">
     <div class="flex items-center justify-between px-6 py-4 border-b border-[#333] shadow-sm">
       <div class="flex items-center gap-4">
-        <h2 class="text-lg font-bold text-gray-200">收件箱</h2>
-        <button class="p-2 rounded-full hover:bg-[#2c2c2e] text-gray-400 transition" @click="toggleSort">
-          <Icon :name="timeSort === 0 ? 'lucide:arrow-down' : 'lucide:arrow-up'" size="20" />
+        <h2 class="text-lg font-bold text-gray-200">
+          收件箱
+        </h2>
+        <button
+          class="p-2 rounded-full hover:bg-[#2c2c2e] text-gray-400 transition"
+          @click="toggleSort"
+        >
+          <Icon
+            :name="timeSort === 0 ? 'lucide:arrow-down' : 'lucide:arrow-up'"
+            size="20"
+          />
         </button>
       </div>
-      <button class="text-sm px-3 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d]" @click="loadEmails">刷新</button>
+      <button
+        class="text-sm px-3 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d]"
+        @click="loadEmails"
+      >
+        刷新
+      </button>
     </div>
 
     <div class="flex-1 overflow-y-auto px-4 py-4">
-      <div v-if="loading" class="text-gray-400 text-sm">正在加载邮件...</div>
+      <div
+        v-if="loading"
+        class="text-gray-400 text-sm"
+      >
+        正在加载邮件...
+      </div>
 
-      <div v-else-if="emails.length === 0" class="flex flex-col items-center justify-center h-full text-gray-500">
-        <Icon name="lucide:inbox" size="64" class="mb-4 opacity-30" />
+      <div
+        v-else-if="emails.length === 0"
+        class="flex flex-col items-center justify-center h-full text-gray-500"
+      >
+        <Icon
+          name="lucide:inbox"
+          size="64"
+          class="mb-4 opacity-30"
+        />
         <p>暂无邮件</p>
       </div>
 
-      <div v-else class="space-y-2">
+      <div
+        v-else
+        class="space-y-2"
+      >
         <article
           v-for="email in emails"
           :key="email.emailId"
           class="bg-[#2c2c2e]/60 hover:bg-[#333336] p-4 rounded-xl border border-transparent hover:border-gray-600 transition-all"
         >
           <div class="flex items-start justify-between gap-4">
-            <div class="min-w-0 flex-1 cursor-pointer" @click="goMessage(email)">
+            <div
+              class="min-w-0 flex-1 cursor-pointer"
+              @click="goMessage(email)"
+            >
               <div class="flex items-center gap-2 text-sm text-gray-300">
                 <span :class="email.unread === 1 ? 'text-gray-300' : 'text-blue-300 font-medium'">{{ email.name || email.sendEmail || '未知发件人' }}</span>
                 <span class="text-xs text-gray-500">{{ formatDate(email.createTime) }}</span>
               </div>
-              <div class="mt-1 text-sm font-medium text-gray-100 truncate">{{ email.subject || '(无主题)' }}</div>
-              <div class="mt-1 text-xs text-gray-400 truncate">{{ parseRecipient(email.recipient) }}</div>
+              <div class="mt-1 text-sm font-medium text-gray-100 truncate">
+                {{ email.subject || '(无主题)' }}
+              </div>
+              <div class="mt-1 text-xs text-gray-400 truncate">
+                {{ parseRecipient(email.recipient) }}
+              </div>
             </div>
 
             <div class="flex items-center gap-2">
-              <button class="p-1 rounded hover:bg-[#1f1f21]" @click="toggleStar(email)">
-                <Icon :name="email.isStar ? 'lucide:star' : 'lucide:star-off'" size="16" />
+              <button
+                class="p-1 rounded hover:bg-[#1f1f21]"
+                @click="toggleStar(email)"
+              >
+                <Icon
+                  :name="email.isStar ? 'lucide:star' : 'lucide:star-off'"
+                  size="16"
+                />
               </button>
-              <button class="p-1 rounded hover:bg-[#1f1f21] text-red-300" @click="removeEmail(email)">
-                <Icon name="lucide:trash-2" size="16" />
+              <button
+                class="p-1 rounded hover:bg-[#1f1f21] text-red-300"
+                @click="removeEmail(email)"
+              >
+                <Icon
+                  name="lucide:trash-2"
+                  size="16"
+                />
               </button>
             </div>
           </div>

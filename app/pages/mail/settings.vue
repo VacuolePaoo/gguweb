@@ -89,47 +89,99 @@ const deleteAccount = async () => {
 <template>
   <section class="p-6 text-white max-w-3xl space-y-8">
     <div class="rounded-xl border border-[#333] bg-[#1c1c1e] p-5">
-      <h2 class="text-xl font-semibold mb-5">个人设置</h2>
+      <h2 class="text-xl font-semibold mb-5">
+        个人设置
+      </h2>
 
       <div class="grid gap-5 text-sm text-gray-300">
         <div class="grid grid-cols-[72px_1fr] items-center gap-4">
-          <div class="font-medium text-gray-200">用户名</div>
+          <div class="font-medium text-gray-200">
+            用户名
+          </div>
           <div>
-            <div v-if="editingName" class="flex items-center gap-2">
-              <input v-model="accountName" class="w-full max-w-sm rounded border border-[#333] bg-[#141414] px-3 py-2" placeholder="请输入用户名" />
-              <button class="px-3 py-2 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-60" :disabled="saveNameLoading" @click="saveName">
+            <div
+              v-if="editingName"
+              class="flex items-center gap-2"
+            >
+              <input
+                v-model="accountName"
+                class="w-full max-w-sm rounded border border-[#333] bg-[#141414] px-3 py-2"
+                placeholder="请输入用户名"
+              >
+              <button
+                class="px-3 py-2 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-60"
+                :disabled="saveNameLoading"
+                @click="saveName"
+              >
                 {{ saveNameLoading ? '保存中...' : '保存' }}
               </button>
             </div>
-            <div v-else class="flex items-center gap-3">
+            <div
+              v-else
+              class="flex items-center gap-3"
+            >
               <span>{{ user?.name || '-' }}</span>
-              <button class="text-blue-300 hover:text-blue-200" @click="openNameEdit">修改</button>
+              <button
+                class="text-blue-300 hover:text-blue-200"
+                @click="openNameEdit"
+              >
+                修改
+              </button>
             </div>
           </div>
         </div>
 
         <div class="grid grid-cols-[72px_1fr] items-center gap-4">
-          <div class="font-medium text-gray-200">邮箱账号</div>
-          <div class="truncate">{{ user?.email || '-' }}</div>
+          <div class="font-medium text-gray-200">
+            邮箱账号
+          </div>
+          <div class="truncate">
+            {{ user?.email || '-' }}
+          </div>
         </div>
       </div>
     </div>
 
     <div class="rounded-xl border border-[#333] bg-[#1c1c1e] p-5">
-      <h3 class="text-lg font-medium mb-3">修改密码</h3>
+      <h3 class="text-lg font-medium mb-3">
+        修改密码
+      </h3>
       <div class="space-y-3">
-        <input v-model="password" type="password" class="w-full rounded border border-[#333] bg-[#141414] px-3 py-2" placeholder="新密码" />
-        <input v-model="confirmPassword" type="password" class="w-full rounded border border-[#333] bg-[#141414] px-3 py-2" placeholder="确认新密码" />
-        <button class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-60" :disabled="loading" @click="savePassword">
+        <input
+          v-model="password"
+          type="password"
+          class="w-full rounded border border-[#333] bg-[#141414] px-3 py-2"
+          placeholder="新密码"
+        >
+        <input
+          v-model="confirmPassword"
+          type="password"
+          class="w-full rounded border border-[#333] bg-[#141414] px-3 py-2"
+          placeholder="确认新密码"
+        >
+        <button
+          class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-60"
+          :disabled="loading"
+          @click="savePassword"
+        >
           {{ loading ? '保存中...' : '保存密码' }}
         </button>
       </div>
     </div>
 
     <div class="rounded-xl border border-[#4b2323] bg-[#1c1c1e] p-5">
-      <h3 class="text-lg font-medium text-red-300 mb-2">危险操作</h3>
-      <p class="text-sm text-gray-400 mb-3">注销后当前用户将被删除，且无法恢复。</p>
-      <button class="px-4 py-2 rounded bg-red-700 hover:bg-red-600" @click="deleteAccount">注销账号</button>
+      <h3 class="text-lg font-medium text-red-300 mb-2">
+        危险操作
+      </h3>
+      <p class="text-sm text-gray-400 mb-3">
+        注销后当前用户将被删除，且无法恢复。
+      </p>
+      <button
+        class="px-4 py-2 rounded bg-red-700 hover:bg-red-600"
+        @click="deleteAccount"
+      >
+        注销账号
+      </button>
     </div>
   </section>
 </template>

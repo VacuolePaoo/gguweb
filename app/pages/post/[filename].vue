@@ -36,26 +36,47 @@ const formattedDate = computed(() => {
     </div>
 
     <section class="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-6 px-6 pb-24 pt-28">
-      <NuxtLink to="/post" class="inline-flex items-center gap-2 text-sm text-gray-400 transition hover:text-white">
+      <NuxtLink
+        to="/post"
+        class="inline-flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
+      >
         ← 返回目录
       </NuxtLink>
 
-      <div v-if="pending" class="rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400">
+      <div
+        v-if="pending"
+        class="rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400"
+      >
         正在加载文章内容...
       </div>
 
-      <div v-else-if="error" class="rounded-2xl border border-red-400/30 bg-red-500/10 px-6 py-10 text-center text-sm text-red-200">
+      <div
+        v-else-if="error"
+        class="rounded-2xl border border-red-400/30 bg-red-500/10 px-6 py-10 text-center text-sm text-red-200"
+      >
         文章加载失败，请稍后再试。
       </div>
 
-      <article v-else-if="data" class="flex flex-col gap-8">
+      <article
+        v-else-if="data"
+        class="flex flex-col gap-8"
+      >
         <header class="flex flex-col gap-4">
-          <p class="text-xs uppercase tracking-[0.4em] text-gray-400">GGU Post</p>
-          <h1 class="text-3xl font-semibold leading-tight text-white md:text-4xl">{{ data.title }}</h1>
-          <div class="text-sm text-gray-400">{{ formattedDate }}</div>
+          <p class="text-xs uppercase tracking-[0.4em] text-gray-400">
+            GGU Post
+          </p>
+          <h1 class="text-3xl font-semibold leading-tight text-white md:text-4xl">
+            {{ data.title }}
+          </h1>
+          <div class="text-sm text-gray-400">
+            {{ formattedDate }}
+          </div>
         </header>
 
-        <div class="post-content" v-html="data.content" />
+        <div
+          class="post-content"
+          v-html="data.content"
+        />
       </article>
     </section>
   </main>

@@ -71,7 +71,7 @@ const send = async () => {
 
   loading.value = true
   try {
-    const attachments = await Promise.all(files.value.map(async (file) => ({
+    const attachments = await Promise.all(files.value.map(async file => ({
       filename: file.name,
       size: file.size,
       contentType: file.type,
@@ -103,21 +103,21 @@ const send = async () => {
   } finally {
     loading.value = false
   }
- }
+}
 
- const saveDraft = () => {
+const saveDraft = () => {
   const payload = {
-     draftId: draftId.value || crypto.randomUUID(),
-     receiveEmail: toText.value.split(/[,，]/).map(item => item.trim()).filter(Boolean),
-     subject: subject.value,
-     content: content.value,
-     updatedAt: Date.now()
-   }
+    draftId: draftId.value || crypto.randomUUID(),
+    receiveEmail: toText.value.split(/[,，]/).map(item => item.trim()).filter(Boolean),
+    subject: subject.value,
+    content: content.value,
+    updatedAt: Date.now()
+  }
 
   upsertDraft(payload)
 
-   alert('草稿已保存')
- }
+  alert('草稿已保存')
+}
 
 onMounted(() => {
   loadDraft()
@@ -126,45 +126,94 @@ onMounted(() => {
 
 <template>
   <section class="p-6 text-white max-w-4xl">
-    <h2 class="text-xl font-semibold mb-4">写邮件</h2>
+    <h2 class="text-xl font-semibold mb-4">
+      写邮件
+    </h2>
 
     <div class="space-y-4">
       <div>
-         <label class="block text-sm text-gray-400 mb-1">收件人（多个用逗号分隔）</label>
-         <input v-model="toText" class="w-full rounded border border-[#333] bg-[#1c1c1e] px-3 py-2" placeholder="user@example.com" />
+        <label class="block text-sm text-gray-400 mb-1">收件人（多个用逗号分隔）</label>
+        <input
+          v-model="toText"
+          class="w-full rounded border border-[#333] bg-[#1c1c1e] px-3 py-2"
+          placeholder="user@example.com"
+        >
       </div>
 
       <div>
-         <label class="block text-sm text-gray-400 mb-1">主题</label>
-         <input v-model="subject" class="w-full rounded border border-[#333] bg-[#1c1c1e] px-3 py-2" placeholder="邮件主题" />
+        <label class="block text-sm text-gray-400 mb-1">主题</label>
+        <input
+          v-model="subject"
+          class="w-full rounded border border-[#333] bg-[#1c1c1e] px-3 py-2"
+          placeholder="邮件主题"
+        >
       </div>
 
       <div>
-         <label class="block text-sm text-gray-400 mb-1">正文</label>
-         <textarea v-model="content" rows="12" class="w-full rounded border border-[#333] bg-[#1c1c1e] px-3 py-2" placeholder="请输入邮件正文" />
+        <label class="block text-sm text-gray-400 mb-1">正文</label>
+        <textarea
+          v-model="content"
+          rows="12"
+          class="w-full rounded border border-[#333] bg-[#1c1c1e] px-3 py-2"
+          placeholder="请输入邮件正文"
+        />
       </div>
 
       <div>
-         <label class="inline-flex items-center gap-2 px-3 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d] cursor-pointer">
-           <Icon name="lucide:paperclip" size="16" />
-           <span>添加附件</span>
-           <input type="file" multiple class="hidden" @change="chooseFiles" />
-         </label>
+        <label class="inline-flex items-center gap-2 px-3 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d] cursor-pointer">
+          <Icon
+            name="lucide:paperclip"
+            size="16"
+          />
+          <span>添加附件</span>
+          <input
+            type="file"
+            multiple
+            class="hidden"
+            @change="chooseFiles"
+          >
+        </label>
 
-         <ul v-if="files.length > 0" class="mt-2 space-y-1 text-sm text-gray-300">
-           <li v-for="(file, idx) in files" :key="`${file.name}-${idx}`" class="flex items-center justify-between rounded bg-[#242426] px-3 py-2">
-             <span class="truncate">{{ file.name }} ({{ Math.ceil(file.size / 1024) }} KB)</span>
-             <button class="text-red-300" @click="removeFile(idx)">移除</button>
-           </li>
-         </ul>
+        <ul
+          v-if="files.length > 0"
+          class="mt-2 space-y-1 text-sm text-gray-300"
+        >
+          <li
+            v-for="(file, idx) in files"
+            :key="`${file.name}-${idx}`"
+            class="flex items-center justify-between rounded bg-[#242426] px-3 py-2"
+          >
+            <span class="truncate">{{ file.name }} ({{ Math.ceil(file.size / 1024) }} KB)</span>
+            <button
+              class="text-red-300"
+              @click="removeFile(idx)"
+            >
+              移除
+            </button>
+          </li>
+        </ul>
       </div>
 
       <div class="flex items-center gap-3">
-         <button class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-60" :disabled="loading" @click="send">
-           {{ loading ? '发送中...' : '发送' }}
-         </button>
-         <button class="px-4 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d]" @click="saveDraft">保存草稿</button>
-         <button class="px-4 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d]" @click="router.back()">取消</button>
+        <button
+          class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-60"
+          :disabled="loading"
+          @click="send"
+        >
+          {{ loading ? '发送中...' : '发送' }}
+        </button>
+        <button
+          class="px-4 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d]"
+          @click="saveDraft"
+        >
+          保存草稿
+        </button>
+        <button
+          class="px-4 py-2 rounded bg-[#2c2c2e] hover:bg-[#3a3a3d]"
+          @click="router.back()"
+        >
+          取消
+        </button>
       </div>
     </div>
   </section>

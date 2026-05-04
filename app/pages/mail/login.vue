@@ -151,8 +151,13 @@ watch(allowRegister, (enabled) => {
     <div class="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-[1fr_430px] border border-gray-800 bg-black rounded-2xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
       <section class="hidden lg:flex flex-col justify-between p-10 border-r border-gray-900/80">
         <div>
-          <p class="text-xs tracking-[0.25em] uppercase text-gray-500 mb-5">Galaxy Global University</p>
-          <h1 class="font-custom text-5xl leading-tight tracking-[0.08em] text-white" style="text-shadow: 0 4px 40px rgba(255, 255, 255, 0.12);">
+          <p class="text-xs tracking-[0.25em] uppercase text-gray-500 mb-5">
+            Galaxy Global University
+          </p>
+          <h1
+            class="font-custom text-5xl leading-tight tracking-[0.08em] text-white"
+            style="text-shadow: 0 4px 40px rgba(255, 255, 255, 0.12);"
+          >
             星河邮箱
           </h1>
           <p class="mt-5 text-gray-400 max-w-sm leading-7">
@@ -160,7 +165,9 @@ watch(allowRegister, (enabled) => {
           </p>
         </div>
         <div class="text-sm text-gray-500 tracking-wide">
-          <p class="mb-2">GGU Secure Mail Portal</p>
+          <p class="mb-2">
+            GGU Secure Mail Portal
+          </p>
           <p>All sessions are encrypted and audited.</p>
         </div>
       </section>
@@ -168,15 +175,26 @@ watch(allowRegister, (enabled) => {
       <section class="p-6 sm:p-8 lg:p-10">
         <div class="flex items-center gap-3 mb-7">
           <div class="h-10 w-10 rounded-full border border-gray-700 bg-black flex items-center justify-center">
-            <Icon name="lucide:mail" size="20" class="text-gray-200" />
+            <Icon
+              name="lucide:mail"
+              size="20"
+              class="text-gray-200"
+            />
           </div>
           <div>
-            <h2 class="text-xl font-bold tracking-wide">{{ config.title || 'Cloud Mail' }}</h2>
-            <p class="text-xs text-gray-500 mt-1 tracking-[0.18em] uppercase">{{ mode === 'login' ? 'Sign In' : 'Create Account' }}</p>
+            <h2 class="text-xl font-bold tracking-wide">
+              {{ config.title || 'Cloud Mail' }}
+            </h2>
+            <p class="text-xs text-gray-500 mt-1 tracking-[0.18em] uppercase">
+              {{ mode === 'login' ? 'Sign In' : 'Create Account' }}
+            </p>
           </div>
         </div>
 
-        <form class="space-y-4" @submit.prevent="submit">
+        <form
+          class="space-y-4"
+          @submit.prevent="submit"
+        >
           <div>
             <label class="block text-xs font-medium text-gray-400 mb-2 uppercase tracking-[0.18em]">邮箱前缀</label>
             <div class="flex gap-2">
@@ -186,13 +204,19 @@ watch(allowRegister, (enabled) => {
                 required
                 :placeholder="showLoginDomain ? 'admin' : 'name@example.com'"
                 class="flex-1 bg-black border border-gray-700 rounded-md px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-white transition-colors"
-              />
+              >
               <select
                 v-if="showLoginDomain && domainList.length > 0"
                 v-model="suffix"
                 class="w-[150px] bg-black border border-gray-700 rounded-md px-2 py-3 text-sm text-white focus:outline-none focus:border-white transition-colors"
               >
-                <option v-for="item in domainList" :key="item" :value="item">{{ item }}</option>
+                <option
+                  v-for="item in domainList"
+                  :key="item"
+                  :value="item"
+                >
+                  {{ item }}
+                </option>
               </select>
             </div>
           </div>
@@ -205,7 +229,7 @@ watch(allowRegister, (enabled) => {
               required
               placeholder="••••••••"
               class="w-full bg-black border border-gray-700 rounded-md px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-white transition-colors"
-            />
+            >
           </div>
 
           <div v-if="mode === 'register'">
@@ -216,7 +240,7 @@ watch(allowRegister, (enabled) => {
               required
               placeholder="••••••••"
               class="w-full bg-black border border-gray-700 rounded-md px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-white transition-colors"
-            />
+            >
           </div>
 
           <div v-if="mode === 'register' && (requireInviteCode || optionalInviteCode)">
@@ -226,10 +250,13 @@ watch(allowRegister, (enabled) => {
               type="text"
               :placeholder="requireInviteCode ? '请输入邀请码' : '邀请码（可选）'"
               class="w-full bg-black border border-gray-700 rounded-md px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-white transition-colors"
-            />
+            >
           </div>
 
-          <div v-if="errorMsg" class="text-red-300 text-xs font-medium bg-red-950/30 p-3 rounded-md border border-red-900/40">
+          <div
+            v-if="errorMsg"
+            class="text-red-300 text-xs font-medium bg-red-950/30 p-3 rounded-md border border-red-900/40"
+          >
             {{ errorMsg }}
           </div>
 
@@ -242,8 +269,8 @@ watch(allowRegister, (enabled) => {
           </button>
 
           <button
-            type="button"
             v-if="allowRegister"
+            type="button"
             class="w-full px-6 py-3 border border-gray-700 rounded-md text-sm text-gray-200 hover:bg-white/10 hover:border-white transition-all duration-300"
             @click="mode = mode === 'login' ? 'register' : 'login'"
           >
