@@ -42,32 +42,30 @@ useHead({
     <!-- Header -->
     <header
       id="global-site-header"
-      class="w-full flex justify-between items-center py-6 px-10 border-b border-gray-800/50 absolute top-0 z-20 bg-black/50 backdrop-blur-md"
+      class="pointer-events-none fixed left-0 right-0 top-5 z-30 flex justify-center px-4"
     >
-      <div class="text-xl font-bold tracking-widest uppercase text-white">
-        GGU
-      </div>
-      <nav class="hidden md:flex gap-10 text-sm text-gray-400 font-medium">
+      <nav class="pointer-events-auto flex max-w-full items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/55 px-2 py-2 text-sm font-medium text-gray-300 shadow-[0_18px_48px_rgba(0,0,0,0.45)] backdrop-blur-xl md:gap-2 md:px-3">
         <NuxtLink
           to="/"
-          class="hover:text-white transition-colors duration-300"
-        >首页</NuxtLink>
+          class="shrink-0 rounded-full px-4 py-2 font-bold tracking-[0.22em] text-white transition-colors duration-300 hover:bg-white/10"
+        >GGU</NuxtLink>
         <a
           href="#"
-          class="hover:text-white transition-colors duration-300"
-        >关于我们</a>
-        <a
-          href="#"
-          class="hover:text-white transition-colors duration-300"
+          class="shrink-0 rounded-full px-4 py-2 transition-colors duration-300 hover:bg-white/10 hover:text-white"
         >学术课程</a>
         <a
           href="#"
-          class="hover:text-white transition-colors duration-300"
+          class="shrink-0 rounded-full px-4 py-2 transition-colors duration-300 hover:bg-white/10 hover:text-white"
         >招生信息</a>
+        <a
+          href="#"
+          class="shrink-0 rounded-full px-4 py-2 transition-colors duration-300 hover:bg-white/10 hover:text-white"
+        >关于我们</a>
+        <NuxtLink
+          to="/mail"
+          class="shrink-0 rounded-full border border-white/10 bg-white px-4 py-2 font-semibold text-black transition-colors duration-300 hover:bg-gray-200"
+        >GGU通行证</NuxtLink>
       </nav>
-      <div class="text-sm border border-gray-600 px-5 py-2 rounded-full cursor-pointer hover:bg-white hover:text-black transition-all duration-300">
-        校园门户
-      </div>
     </header>
 
     <NuxtPage />
