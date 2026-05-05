@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@nuxt/content'
   ],
 
   devtools: {
@@ -10,6 +11,9 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+  content: {
+    experimental: { nativeSqlite: true }
+  },
 
   runtimeConfig: {
     public: {
