@@ -2,6 +2,8 @@
 const route = useRoute()
 const isJoinDoscRoute = computed(() => route.path === '/joindosc')
 const isPostIndex = computed(() => route.path === '/post')
+const isMailRoute = computed(() => route.path.startsWith('/mail'))
+const isFullView = computed(() => isJoinDoscRoute.value || isPostIndex.value || isMailRoute.value)
 const bodyClass = computed(() => (isPostIndex.value ? 'no-scroll' : ''))
 
 const navItems = [
@@ -96,7 +98,7 @@ useHead({
 </script>
 
 <template>
-  <div :class="['bg-black text-white flex flex-col font-sans selection:bg-gray-800 relative overflow-hidden', (isJoinDoscRoute || isPostIndex) ? 'h-screen' : 'min-h-screen']">
+  <div :class="['bg-black text-white flex flex-col font-sans selection:bg-gray-800 relative overflow-hidden', isFullView ? 'h-screen' : 'min-h-screen']">
     <!-- Header -->
     <header
       id="global-site-header"
@@ -126,7 +128,7 @@ useHead({
 
     <!-- Footer -->
     <footer
-      v-if="!isJoinDoscRoute && !isPostIndex"
+      v-if="!isFullView"
       id="global-site-footer"
       class="w-full py-8 text-center text-xs md:text-sm text-gray-600 border-t border-gray-900 mt-auto z-20 relative bg-black/80"
     >
