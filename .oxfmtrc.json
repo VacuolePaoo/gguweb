@@ -1,6 +1,5 @@
 {
   "$schema": "https://oxc.rs/schema/config.json",
-  "printWidth": 100,
   "indentStyle": "space",
   "indentWidth": 2,
   "singleQuote": true,
