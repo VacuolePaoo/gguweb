@@ -86,3 +86,5 @@ The project uses hybrid rendering configured in `nuxt.config.ts`:
 - **Styling**: Tailwind with custom dark prose/card/code themes in app.config.ts
 - **Icons**: @iconify/vue with lucide and simple-icons collections
 - **i18n**: vue-i18n configured for internationalization
+
+@DESIGN.md
