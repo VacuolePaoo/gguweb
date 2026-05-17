@@ -174,6 +174,9 @@ useHead({
       isFullView ? 'h-screen' : 'min-h-screen',
     ]"
   >
+    <!-- Global ambient light orbs -->
+    <AmbientOrbs />
+
     <!-- Header -->
     <header
       id="global-site-header"

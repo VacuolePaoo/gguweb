@@ -76,19 +76,7 @@ const goToPage = (nextPage: number) => {
 </script>
 
 <template>
-  <main class="relative h-screen overflow-hidden bg-black text-white">
-    <div class="pointer-events-none absolute inset-0 overflow-hidden">
-      <div
-        class="absolute -right-40 -top-48 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12),rgba(0,0,0,0))]"
-      />
-      <div
-        class="absolute left-10 top-20 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,148,255,0.18),rgba(0,0,0,0))]"
-      />
-      <div
-        class="absolute bottom-0 right-0 h-[420px] w-[420px] bg-[radial-gradient(circle,rgba(0,0,0,0),rgba(0,0,0,0.85))]"
-      />
-    </div>
-
+  <main class="relative h-screen overflow-hidden text-white">
     <section
       class="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col gap-8 px-6 pb-8 pt-28 box-border min-h-0"
     >

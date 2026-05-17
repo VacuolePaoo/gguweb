@@ -170,19 +170,7 @@ watch(currentAccountId, (newValue) => {
 <template>
   <NuxtPage v-if="isLoginRoute" />
 
-  <div v-else class="bg-black/70 text-white overflow-hidden relative isolate" :style="shellStyle">
-    <div class="pointer-events-none absolute inset-0 overflow-hidden z-0">
-      <div
-        class="absolute -right-32 -top-40 h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.18),rgba(0,0,0,0))]"
-      />
-      <div
-        class="absolute left-6 top-10 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,148,255,0.3),rgba(0,0,0,0))]"
-      />
-      <div
-        class="absolute bottom-0 right-0 h-[420px] w-[420px] bg-[radial-gradient(circle,rgba(0,0,0,0),rgba(0,0,0,0.65))]"
-      />
-    </div>
-
+  <div v-else class="text-white overflow-hidden relative isolate" :style="shellStyle">
     <div class="relative z-10 flex h-full">
       <div v-if="showAside" class="fixed inset-0 bg-black/50 z-40 md:hidden" @click="closeAside" />
 

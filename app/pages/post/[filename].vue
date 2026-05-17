@@ -36,16 +36,7 @@ const tags = computed(() => (data.value?.tags?.length ? data.value.tags : ['æ–‡å
 </script>
 
 <template>
-  <main class="relative min-h-screen bg-black text-white">
-    <div class="pointer-events-none absolute inset-0 overflow-hidden">
-      <div
-        class="absolute left-0 top-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),rgba(0,0,0,0))]"
-      />
-      <div
-        class="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,148,255,0.16),rgba(0,0,0,0))]"
-      />
-    </div>
-
+  <main class="relative min-h-screen text-white">
     <section class="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-6 px-6 pb-24 pt-28">
       <NuxtLink
         to="/post"
