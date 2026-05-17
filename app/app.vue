@@ -179,6 +179,7 @@ useHead({
 
     <!-- Header -->
     <header
+      v-if="!isMailRoute"
       id="global-site-header"
       class="pointer-events-none fixed left-0 right-0 top-5 z-30 flex justify-center px-4"
     >
