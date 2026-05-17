@@ -6,12 +6,9 @@ export default defineNuxtRouteMiddleware((to) => {
     return;
   }
 
-  const { token } = useMailState();
-  if (import.meta.client && !token.value) {
-    const cached = localStorage.getItem('token') || localStorage.getItem('mail_token');
-    if (cached) {
-      token.value = cached.startsWith('Bearer ') ? cached.slice(7).trim() : cached;
-    }
+  const { token, restoreToken } = useMailState();
+  if (!token.value) {
+    restoreToken();
   }
 
   if (!token.value) {

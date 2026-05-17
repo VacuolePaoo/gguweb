@@ -1,5 +1,14 @@
 import type { MailAccount, MailItem, MailUser, MailWebsiteConfig } from '~/types/mail';
 
+const TOKEN_KEY = 'mail_token';
+
+const normalizeToken = (value: string | null | undefined) => {
+  if (!value) {
+    return null;
+  }
+  return value.startsWith('Bearer ') ? value.slice(7).trim() : value;
+};
+
 export const useMailState = () => {
   const token = useState<string | null>('mail_token_state', () => null);
   const user = useState<MailUser | null>('mail_user', () => null);
@@ -20,32 +29,39 @@ export const useMailState = () => {
     );
   });
 
-  const normalizeToken = (value: string | null | undefined) => {
-    if (!value) {
-      return null;
+  const restoreToken = () => {
+    if (!import.meta.client) {
+      return;
     }
-    return value.startsWith('Bearer ') ? value.slice(7).trim() : value;
+    if (token.value) {
+      return;
+    }
+    // Migrate legacy key
+    const legacy = localStorage.getItem('token');
+    if (legacy) {
+      localStorage.removeItem('token');
+      localStorage.setItem(TOKEN_KEY, normalizeToken(legacy) || legacy);
+    }
+    const cached = localStorage.getItem(TOKEN_KEY);
+    if (cached) {
+      token.value = normalizeToken(cached);
+    }
   };
 
   if (import.meta.client) {
-    const cached = localStorage.getItem('token') || localStorage.getItem('mail_token');
-    if (!token.value && cached) {
-      token.value = normalizeToken(cached);
-    }
+    restoreToken();
 
     watch(
       token,
       (value) => {
         const normalized = normalizeToken(value);
         if (normalized) {
-          localStorage.setItem('token', normalized);
-          localStorage.setItem('mail_token', normalized);
+          localStorage.setItem(TOKEN_KEY, normalized);
           if (token.value !== normalized) {
             token.value = normalized;
           }
         } else {
-          localStorage.removeItem('token');
-          localStorage.removeItem('mail_token');
+          localStorage.removeItem(TOKEN_KEY);
         }
       },
       { immediate: true },
@@ -59,8 +75,7 @@ export const useMailState = () => {
     currentAccountId.value = null;
     selectedEmail.value = null;
     if (import.meta.client) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('mail_token');
+      localStorage.removeItem(TOKEN_KEY);
     }
   };
 
@@ -73,5 +88,6 @@ export const useMailState = () => {
     currentAccount,
     selectedEmail,
     clearSession,
+    restoreToken,
   };
 };
