@@ -169,20 +169,29 @@ watch(allowRegister, (enabled) => {
       </section>
 
       <section class="p-6 sm:p-8 lg:p-10">
-        <div class="flex items-center gap-3 mb-7">
-          <div
-            class="h-10 w-10 rounded-full border border-gray-700 bg-black flex items-center justify-center"
+        <div class="flex items-center justify-between mb-7">
+          <div class="flex items-center gap-3">
+            <div
+              class="h-10 w-10 rounded-full border border-gray-700 bg-black flex items-center justify-center"
+            >
+              <Icon name="lucide:mail" size="20" class="text-gray-200" />
+            </div>
+            <div>
+              <h2 class="text-xl font-bold tracking-wide">
+                {{ config.title || 'Cloud Mail' }}
+              </h2>
+              <p class="text-xs text-gray-500 mt-1 tracking-[0.18em] uppercase">
+                {{ mode === 'login' ? 'Sign In' : 'Create Account' }}
+              </p>
+            </div>
+          </div>
+          <NuxtLink
+            to="/"
+            class="text-xs text-gray-500 hover:text-gray-300 transition-colors flex items-center gap-1"
           >
-            <Icon name="lucide:mail" size="20" class="text-gray-200" />
-          </div>
-          <div>
-            <h2 class="text-xl font-bold tracking-wide">
-              {{ config.title || 'Cloud Mail' }}
-            </h2>
-            <p class="text-xs text-gray-500 mt-1 tracking-[0.18em] uppercase">
-              {{ mode === 'login' ? 'Sign In' : 'Create Account' }}
-            </p>
-          </div>
+            <Icon name="lucide:arrow-left" size="12" />
+            返回主站
+          </NuxtLink>
         </div>
 
         <form class="space-y-4" @submit.prevent="submit">

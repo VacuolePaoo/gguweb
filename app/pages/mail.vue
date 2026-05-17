@@ -138,6 +138,15 @@ watch(currentAccountId, (newValue) => {
     >
       <nav class="flex-1 min-h-0 overflow-y-auto px-3 py-4 space-y-1">
         <NuxtLink
+          to="/"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm text-gray-500 hover:text-gray-300 hover:bg-white/[0.04] mb-2"
+          @click="closeAside"
+        >
+          <Icon name="lucide:arrow-left" size="16" />
+          <span>返回主站</span>
+        </NuxtLink>
+
+        <NuxtLink
           v-for="item in menuItems"
           :key="item.id"
           :to="item.path"
