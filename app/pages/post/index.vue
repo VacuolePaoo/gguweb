@@ -82,18 +82,20 @@ const goToPage = (nextPage: number) => {
     >
       <header class="flex flex-col gap-6">
         <div class="flex flex-col gap-4">
-          <p class="text-sm uppercase tracking-[0.4em] text-gray-400">GGU Post Archive</p>
-          <h1 class="text-4xl font-semibold tracking-[0.1em] md:text-5xl">星河文库</h1>
-          <p class="max-w-2xl text-base text-gray-400">
+          <p class="text-xs font-medium uppercase tracking-[0.4em] text-[#6b7280]">GGU Post Archive</p>
+          <h1 class="font-custom text-4xl font-semibold tracking-[0.1em] md:text-5xl">星河文库</h1>
+          <p class="max-w-2xl text-base leading-relaxed text-[#9ca3af]">
             汇集校园新闻、学术活动与研究速递。每一篇文章都由构建引擎自动整理，确保干净、快速、无噪声的阅读体验。
           </p>
         </div>
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400">
-          <div class="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-            共 {{ total }} 篇
+        <div class="flex flex-wrap items-center gap-3 text-xs text-[#6b7280]">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
+            <Icon name="lucide:file-text" size="13" />
+            <span>共 {{ total }} 篇</span>
           </div>
-          <div class="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-            第 {{ page }} / {{ totalPages }} 页
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
+            <Icon name="lucide:layers" size="13" />
+            <span>第 {{ page }} / {{ totalPages }} 页</span>
           </div>
         </div>
       </header>
@@ -107,48 +109,51 @@ const goToPage = (nextPage: number) => {
           >
             <div class="flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10">
               <div class="flex flex-1 flex-col gap-4">
-                <div class="flex flex-wrap items-center gap-3 text-xs text-gray-400">
-                  <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1"
-                    >📅 {{ formatDate(item.date) }}</span
-                  >
-                  <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1"
-                    >📘 {{ getCategory(item) }}</span
-                  >
+                <div class="flex flex-wrap items-center gap-2 text-xs text-[#9ca3af]">
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1">
+                    <Icon name="lucide:calendar" size="12" />
+                    {{ formatDate(item.date) }}
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1">
+                    <Icon name="lucide:folder" size="12" />
+                    {{ getCategory(item) }}
+                  </span>
                   <span
                     v-for="tag in getTags(item)"
                     :key="tag"
-                    class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1"
-                    ># {{ tag }}</span
+                    class="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1"
                   >
+                    <Icon name="lucide:hash" size="10" class="opacity-50" />
+                    {{ tag }}
+                  </span>
                 </div>
-                <h3 class="text-2xl font-semibold leading-snug text-white">
-                  <NuxtLink :to="getPostUrl(item)" class="hover:text-white/80">
+                <h3 class="text-xl font-semibold leading-snug text-white">
+                  <NuxtLink :to="getPostUrl(item)" class="transition-colors duration-300 hover:text-white/80">
                     {{ item.title }}
                   </NuxtLink>
                 </h3>
-                <p class="text-sm leading-relaxed text-gray-400 line-clamp-3">
+                <p class="text-sm leading-relaxed text-[#9ca3af] line-clamp-3">
                   {{ item.description }}
                 </p>
-                <div class="mt-2 text-xs text-gray-500">阅读时长 · 1 分钟</div>
               </div>
 
               <NuxtLink
                 :to="getPostUrl(item)"
-                class="relative block overflow-hidden rounded-2xl border border-white/10 bg-black/40 md:h-32 md:w-56"
+                class="relative block overflow-hidden rounded-2xl border border-white/10 bg-[#0b1118] md:h-32 md:w-56"
               >
                 <div v-if="item.cover" class="h-48 w-full overflow-hidden md:h-full">
                   <img
                     :src="item.cover"
                     :alt="item.title"
-                    class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    class="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
                 <div
                   v-else
-                  class="flex h-48 items-center justify-center bg-gradient-to-br from-slate-800 via-slate-900 to-black md:h-full"
+                  class="flex h-48 items-center justify-center bg-gradient-to-br from-[#11161c] via-[#0b1118] to-black md:h-full"
                 >
-                  <span class="text-5xl font-semibold text-white/60">{{
+                  <span class="font-custom text-5xl font-semibold text-white/50">{{
                     getInitial(item.title)
                   }}</span>
                 </div>
@@ -159,7 +164,7 @@ const goToPage = (nextPage: number) => {
 
         <div
           v-if="pending"
-          class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400"
+          class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-[#6b7280] backdrop-blur"
         >
           正在加载文章目录...
         </div>
@@ -173,27 +178,31 @@ const goToPage = (nextPage: number) => {
 
         <div
           v-else-if="posts.length === 0"
-          class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400"
+          class="mt-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-[#6b7280] backdrop-blur"
         >
           暂无文章内容。
         </div>
       </div>
 
-      <footer class="flex flex-wrap items-center justify-between gap-4 pt-4 text-sm text-gray-400">
+      <footer class="flex flex-wrap items-center justify-between gap-4 pt-4 text-sm text-[#6b7280]">
         <button
-          class="rounded-full border border-white/15 px-5 py-2 transition hover:border-white/40 disabled:cursor-not-allowed disabled:opacity-40"
+          class="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:border-white/40 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
           :disabled="page <= 1"
           @click="goToPage(page - 1)"
         >
+          <Icon name="lucide:chevron-left" size="14" />
           上一页
         </button>
-        <div class="text-xs uppercase tracking-[0.3em]">Page {{ page }} of {{ totalPages }}</div>
+        <div class="text-xs font-medium uppercase tracking-[0.3em] text-[#4b5563]">
+          {{ page }} / {{ totalPages }}
+        </div>
         <button
-          class="rounded-full border border-white/15 px-5 py-2 transition hover:border-white/40 disabled:cursor-not-allowed disabled:opacity-40"
+          class="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:border-white/40 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
           :disabled="page >= totalPages"
           @click="goToPage(page + 1)"
         >
           下一页
+          <Icon name="lucide:chevron-right" size="14" />
         </button>
       </footer>
     </section>

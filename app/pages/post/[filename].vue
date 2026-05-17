@@ -37,17 +37,18 @@ const tags = computed(() => (data.value?.tags?.length ? data.value.tags : ['文�
 
 <template>
   <main class="relative min-h-screen text-white">
-    <section class="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-6 px-6 pb-24 pt-28">
+    <section class="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 pb-24 pt-28">
       <NuxtLink
         to="/post"
-        class="inline-flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
+        class="inline-flex items-center gap-2 text-sm text-[#6b7280] transition-colors duration-300 hover:text-white"
       >
-        ← 返回目录
+        <Icon name="lucide:arrow-left" size="14" />
+        返回目录
       </NuxtLink>
 
       <div
         v-if="pending"
-        class="rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-gray-400"
+        class="rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center text-sm text-[#6b7280] backdrop-blur"
       >
         正在加载文章内容...
       </div>
@@ -60,24 +61,28 @@ const tags = computed(() => (data.value?.tags?.length ? data.value.tags : ['文�
       </div>
 
       <article v-else-if="data" class="flex flex-col gap-8">
-        <header class="flex flex-col gap-4">
-          <p class="text-xs uppercase tracking-[0.4em] text-gray-400">GGU Post</p>
-          <h1 class="text-3xl font-semibold leading-tight text-white md:text-4xl">
+        <header class="flex flex-col gap-5">
+          <p class="text-xs font-medium uppercase tracking-[0.4em] text-[#6b7280]">GGU Post</p>
+          <h1 class="font-custom text-3xl font-semibold leading-tight tracking-[0.05em] text-white md:text-4xl">
             {{ data.title }}
           </h1>
-          <div class="text-sm text-gray-400">
-            {{ formattedDate }}
+          <div class="flex items-center gap-3 text-sm text-[#6b7280]">
+            <Icon name="lucide:calendar" size="14" />
+            <span>{{ formattedDate }}</span>
           </div>
-          <div class="flex flex-wrap items-center gap-3 text-xs text-gray-400">
-            <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1"
-              >📘 {{ category }}</span
-            >
+          <div class="flex flex-wrap items-center gap-3 text-xs text-[#9ca3af]">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1">
+              <Icon name="lucide:folder" size="12" />
+              {{ category }}
+            </span>
             <span
               v-for="tag in tags"
               :key="tag"
-              class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1"
-              ># {{ tag }}</span
+              class="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1"
             >
+              <Icon name="lucide:hash" size="10" class="opacity-50" />
+              {{ tag }}
+            </span>
           </div>
         </header>
 
@@ -88,7 +93,9 @@ const tags = computed(() => (data.value?.tags?.length ? data.value.tags : ['文�
           class="w-full rounded-2xl border border-white/10 object-cover shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
         />
 
-        <ContentRenderer :value="data" class="post-content" />
+        <div class="post-content">
+          <ContentRenderer :value="data" />
+        </div>
       </article>
     </section>
   </main>
