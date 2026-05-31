@@ -6,7 +6,7 @@ const title = '星河环球大学'.split('');
 
 <template>
   <main
-    class="flex-grow flex flex-col items-center justify-center text-center px-4 relative z-10 w-full pt-20 pb-10 overflow-hidden"
+    class="flex-grow flex flex-col items-center justify-center text-center px-4 relative z-10 w-full pt-16 pb-8 md:pt-20 md:pb-10 overflow-hidden"
   >
     <div class="relative z-10 w-full max-w-5xl">
       <!-- 微弱背景动态层 -->
@@ -22,7 +22,7 @@ const title = '星河环球大学'.split('');
         }"
       >
         <div
-          class="absolute left-1/2 top-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-[120px]"
+          class="absolute left-1/2 top-1/2 w-[280px] h-[280px] md:w-[600px] md:h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-[80px] md:blur-[120px]"
         />
       </Motion>
 
@@ -41,17 +41,17 @@ const title = '星河环球大学'.split('');
         :transition="{
           duration: 0.8,
         }"
-        class="overflow-hidden mx-auto mb-10"
+        class="overflow-hidden mx-auto mb-6 md:mb-10"
       >
         <span
-          class="inline-block whitespace-nowrap text-[12px] tracking-[0.4em] uppercase border border-white/[0.08] rounded-full px-5 py-2 text-gray-400"
+          class="inline-block whitespace-nowrap text-[10px] md:text-[12px] tracking-[0.3em] md:tracking-[0.4em] uppercase border border-white/[0.08] rounded-full px-4 py-1.5 md:px-5 md:py-2 text-gray-400"
         >
           Galaxy Global University
         </span>
       </Motion>
 
       <!-- 标题逐字 -->
-      <div class="mb-8">
+      <div class="mb-5 md:mb-8">
         <h1
           class="text-[3rem] md:text-[4rem] lg:text-[6rem] font-bold text-white tracking-[.12em] font-custom"
         >
@@ -95,14 +95,16 @@ const title = '星河环球大学'.split('');
           delay: 1.1,
         }"
       >
-        <p class="text-base md:text-xl tracking-[0.35em] text-gray-400 uppercase mb-10">
+        <p
+          class="text-sm md:text-xl tracking-[0.2em] md:tracking-[0.35em] text-gray-400 uppercase mb-6 md:mb-10"
+        >
           Galaxy Global University
         </p>
       </Motion>
 
       <!-- CTA -->
       <Motion
-        class="flex flex-col sm:flex-row gap-6 justify-center"
+        class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
         :initial="{ opacity: 0 }"
         :animate="{ opacity: 1 }"
         :transition="{
@@ -111,6 +113,7 @@ const title = '星河环球大学'.split('');
         }"
       >
         <Motion
+          class="w-full sm:w-auto"
           :initial="{
             y: 50,
             opacity: 0,
@@ -129,7 +132,7 @@ const title = '星河环球大学'.split('');
         >
           <NuxtLink
             to="/joindosc"
-            class="group px-10 py-4 rounded-xl bg-white text-black relative overflow-hidden"
+            class="group block w-full sm:w-auto text-center px-8 py-3 md:px-10 md:py-4 rounded-xl bg-white text-black relative overflow-hidden"
           >
             <Motion
               class="absolute inset-0 bg-black/5"
@@ -143,6 +146,7 @@ const title = '星河环球大学'.split('');
         </Motion>
 
         <Motion
+          class="w-full sm:w-auto"
           :initial="{
             y: 50,
             opacity: 0,
@@ -161,7 +165,7 @@ const title = '星河环球大学'.split('');
         >
           <NuxtLink
             to="/post"
-            class="px-10 py-4 rounded-xl border border-white/20 bg-white/[0.02] backdrop-blur-md"
+            class="block w-full sm:w-auto text-center px-8 py-3 md:px-10 md:py-4 rounded-xl border border-white/20 bg-white/[0.02] backdrop-blur-md"
           >
             星河文库
           </NuxtLink>
