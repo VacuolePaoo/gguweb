@@ -11,7 +11,10 @@ const parseRecipient = (value?: string) => {
   try {
     const list = JSON.parse(value);
     if (Array.isArray(list)) {
-      return list.map((item) => item.address || item.email || '').filter(Boolean).join(', ');
+      return list
+        .map((item) => item.address || item.email || '')
+        .filter(Boolean)
+        .join(', ');
     }
   } catch {
     return value;
@@ -56,7 +59,9 @@ const goReply = () => {
 <template>
   <div class="flex-1 flex flex-col min-h-0">
     <!-- Header -->
-    <div class="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] shrink-0">
+    <div
+      class="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] shrink-0"
+    >
       <button
         class="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-200 transition-colors"
         @click="router.back()"
@@ -89,7 +94,10 @@ const goReply = () => {
 
     <!-- Content -->
     <div class="flex-1 overflow-y-auto">
-      <div v-if="!email" class="flex flex-col items-center justify-center h-full text-gray-500 py-20">
+      <div
+        v-if="!email"
+        class="flex flex-col items-center justify-center h-full text-gray-500 py-20"
+      >
         <Icon name="lucide:mail" size="48" class="mb-4 opacity-20" />
         <p class="text-sm">没有可查看的邮件，请返回列表重新选择</p>
       </div>
@@ -103,7 +111,9 @@ const goReply = () => {
 
           <!-- Meta -->
           <div class="flex items-start gap-3 mb-5 pb-5 border-b border-white/[0.06]">
-            <div class="w-9 h-9 rounded-full bg-blue-600/20 flex items-center justify-center shrink-0 text-sm font-medium text-blue-300">
+            <div
+              class="w-9 h-9 rounded-full bg-blue-600/20 flex items-center justify-center shrink-0 text-sm font-medium text-blue-300"
+            >
               {{ (email.name || email.sendEmail || 'U').charAt(0).toUpperCase() }}
             </div>
             <div class="flex-1 min-w-0">
@@ -122,7 +132,11 @@ const goReply = () => {
 
           <!-- Body -->
           <div class="text-sm text-gray-300 leading-relaxed">
-            <div v-if="email.content" class="prose prose-invert max-w-none" v-html="email.content" />
+            <div
+              v-if="email.content"
+              class="prose prose-invert max-w-none"
+              v-html="email.content"
+            />
             <pre v-else class="whitespace-pre-wrap font-sans">{{ email.text || '(空内容)' }}</pre>
           </div>
 
